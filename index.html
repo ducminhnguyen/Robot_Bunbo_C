@@ -28,6 +28,34 @@
 <p><img src="http://www.pabr.org/bricks/brickfpv/abstract.jpg" alt="">
 <img src="http://previews.123rf.com/images/cokemomo/cokemomo1207/cokemomo120700047/14624122-bun-bo-hue-a-bowl-of-beef-rice-vermicelli-soup-vietnamese-noodle-cuisine-Stock-Photo.jpg" alt=""></p>
 
+      <h1><a id="Operation_System_Project_Report_Robot_bunbo_0"></a>Operation System Project Report: Robot bunbo</h1>
+<h2><a id="I_Description_of_the_architecture_of_the_robot_2"></a>I. Description of the architecture of the robot</h2>
+<p>The robot uses 3 sensors which are: color, ultra sonic, and gyro.</p>
+<ul>
+<li>The color sensor is used for reading black line on the ground where the robot go.</li>
+<li>The ultra sonic sensor is used to calculate the distance.</li>
+<li>The gyro sensor is used to calibrate the robotâ€™s direction at any moment.</li>
+</ul>
+<p>The robot uses 3 motors to move and to grab the ball</p>
+<ul>
+<li>The 2 main motors are used for 2 wheels, the 2 wheels move independently so that the robot can turn.</li>
+<li>The grabber motor is situated between the 2 main motors. The grabber motor acts as a trap door to trap the ball inside the robot.</li>
+</ul>
+<h2><a id="II_Algorithms_used_for_the_two_most_important_points_12"></a>II. Algorithms used for the two most important points</h2>
+<p>In order to make the robot run straight we continuosly calibrate the speed of each wheel with respect to the gyro sensor. If the robot goes to the left, we decrease the speed of the left a little and vice versa to ensure that the robot goes straight when it is supposed to.</p>
+<p>In order to make the robot turn in the right direction, we use the gyro sensor to calculate exactly the turn angle. We also save the true straight angle so that we can go back to the basic angle whenever we want to.</p>
+<p>We structure our program to be a loop that will sequentially call update sensor value and drive the robot. This architecture, which is usually seen in game programming, proves to be very effective as the sensor information is always up to date and each stages of the program is controllable and modularize for easy of debugging and maintenance.</p>
+<p>We structure the game into steps that can be programmed independently. Each step correspond to each stage of the competition. For example the beginner of the small stadium can go until the black line, turn left, scan for the ball â€¦ Each step is programmed separately so that we can ensure the success of each step then we integrating them into a series of steps that can play the game.</p>
+<p>We use a structure that is similar to that of object oriented programming and the command design pattern. This structure allows us to define fine grain steps that can be reuse in both the big stadium and the small stadium without re-programming too specificly. We design an interface struct called â€œstepâ€ that contain function pointers: run_motor, update, initialize. The initialize function is called at the beginning of the step the update and run_motor function is called sequentially in loop during the step if the step finish the handle is pass to the next step.</p>
+<h2><a id="III_Source_code_and_instructions_24"></a>III. Source code and instructions</h2>
+<p>The source code of the robot is available on our private github.<br>
+<a href="mailto:git@gitlab.eurecom.fr">git@gitlab.eurecom.fr</a>:OS_Project_Robot/Robot_Bunbo.git</p>
+<p>The client folder contain our project. To compile the project go to Step_model folder and type â€œmakeâ€ to compile the program and the library in client/libs.</p>
+<h2><a id="IV_Videos__pictures_30"></a>IV. Videos / pictures</h2>
+<h2><a id="V_Member_role_and_work_34"></a>V. Member role and work</h2>
+<p>Minh-Duc NGUYEN: System design and implementation, robot design and assemble, Run straight step, turn step implementation, write report, retrieve ball.</p>
+<p>Quang Viet Hoang NGUYEN: Ball scanning function implementation, rotation implementation, robot design and assemble, release ball.</p>
+<p>Lu Duc Duong LAM: Bluetooth message implementation, robot assemble.</p>
       <footer class="site-footer">
         <span class="site-footer-owner"><a href="https://github.com/ducminhnguyen/Robot_Bunbo_C">Robot BunBo</a> is maintained by <a href="https://github.com/ducminhnguyen">ducminhnguyen</a>.</span>
 
